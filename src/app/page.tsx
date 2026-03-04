@@ -286,7 +286,7 @@ const pestañas = ["Mundo", "América Alerta", "Opinión", "Virales"]
 // Palabras clave para marcar
 const palabrasParaMarcar = [
   "cambio climático",
-  "Acuerdo",
+  "acuerdo",
   "alianza",
   "tecnología",
   "redes sociales",
@@ -299,14 +299,23 @@ const palabrasParaMarcar = [
   "desinformación"
 ]
 
-// Función para marcar palabras en el texto
-const marcarPalabras = (texto: string) => {
-  let resultado = texto
-  palabrasParaMarcar.forEach(palabra => {
-    const regex = new RegExp(`(${palabra})`, 'gi')
-    resultado = resultado.replace(regex, `|||MARCA|||$1|||FIN|||`)
+// Función para renderizar texto con palabras marcadas
+const renderTextoMarcado = (texto: string) => {
+  // Crear expresión regular con todas las palabras
+  const regex = new RegExp(`(${palabrasParaMarcar.join('|')})`, 'gi')
+  const partes = texto.split(regex)
+  
+  return partes.map((parte, index) => {
+    // Verificar si esta parte coincide con alguna palabra a marcar
+    const esPalabraClave = palabrasParaMarcar.some(
+      p => p.toLowerCase() === parte.toLowerCase()
+    )
+    
+    if (esPalabraClave) {
+      return <PalabraMarcada key={index}>{parte}</PalabraMarcada>
+    }
+    return parte
   })
-  return resultado
 }
 
 // Tipos de vista
@@ -587,23 +596,9 @@ export default function Home() {
   }
 
   // Componente para renderizar contenido con palabras marcadas
-  const renderContenido = (contenido: string) => {
-    const textoMarcado = marcarPalabras(contenido)
-    const partes = textoMarcado.split('|||')
-    
-    return partes.map((parte, index) => {
-      if (parte === 'MARCA|||') {
-        return null
-      }
-      if (parte === 'FIN|||') {
-        return null
-      }
-      if (partes[index - 1] === 'MARCA|||') {
-        return <PalabraMarcada key={index}>{parte}</PalabraMarcada>
-      }
-      return <span key={index}>{parte}</span>
-    })
-  }
+const renderContenido = (contenido: string) => {
+  return renderTextoMarcado(contenido)
+}
 
   // VISTA: NOTICIA INDIVIDUAL
   if (vistaActual === 'noticia' && noticiaSeleccionada) {

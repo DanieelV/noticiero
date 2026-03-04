@@ -24,7 +24,7 @@ const PalabraMarcada = ({ children }: { children: React.ReactNode }) => (
     href={redesSociales.x} 
     target="_blank" 
     rel="noopener noreferrer"
-    className="bg-yellow-200 text-[#1e3a5f] px-1 rounded font-medium hover:bg-yellow-300 transition-colors cursor-pointer"
+    className="text-blue-600 underline decoration-blue-600 decoration-2 underline-offset-2 hover:text-blue-800 hover:decoration-blue-800 transition-colors cursor-pointer font-medium"
   >
     {children}
   </a>

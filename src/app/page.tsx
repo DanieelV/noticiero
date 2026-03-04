@@ -10,7 +10,40 @@ const XIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-// Imágenes reales de Unsplash (gratis y de alta calidad)
+// Enlaces de redes sociales
+const redesSociales = {
+  facebook: "https://www.facebook.com/profile.php?id=100046874664374",
+  x: "https://x.com/AntonioVillamil",
+  youtube: "https://www.youtube.com/@AntonioVillamil",
+  telegram: "#" // Aún no tiene
+}
+
+// Componente para palabras marcadas con enlace
+const PalabraMarcada = ({ children }: { children: React.ReactNode }) => (
+  <a 
+    href={redesSociales.x} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="bg-yellow-200 text-[#1e3a5f] px-1 rounded font-medium hover:bg-yellow-300 transition-colors cursor-pointer"
+  >
+    {children}
+  </a>
+)
+
+// Componente para embeber videos de YouTube
+const VideoYouTube = ({ videoId, titulo }: { videoId: string; titulo: string }) => (
+  <div className="relative overflow-hidden rounded-lg mb-6 aspect-video">
+    <iframe
+      src={`https://www.youtube.com/embed/${videoId}`}
+      title={titulo}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="w-full h-full"
+    />
+  </div>
+)
+
+// Imágenes de respaldo para noticias sin video
 const imagenes = {
   mundo1: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=800&q=80",
   mundo2: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
@@ -45,7 +78,7 @@ const todasLasNoticias = [
 El acuerdo establece que los países participantes se comprometen a reducir sus emisiones de gases de efecto invernadero en un 50% para el año 2030, utilizando como línea base los niveles registrados en 2015. Esta meta, considerada por muchos expertos como el punto de inflexión necesario para evitar catástrofes climáticas irreversibles, representa un esfuerzo coordinado sin precedentes en la historia de la diplomacia ambiental.
 
 Entre las medidas específicas incluidas en el acuerdo destacan la transición acelerada hacia energías renovables, la implementación de impuestos al carbono, y la creación de un fondo internacional de 100 mil millones de dólares para apoyar a países en desarrollo en sus esfuerzos de descarbonización.`,
-    imagen: imagenes.mundo1,
+    videoId: "pvY2oHTW99s", // Video de YouTube
     categoria: "Mundo",
     fecha: "22 de febrero de 2025",
     autor: "Redacción"
@@ -59,7 +92,7 @@ Entre las medidas específicas incluidas en el acuerdo destacan la transición a
 La iniciativa, que ha sido denominada "Alianza Regional para el Comercio Integrado" (ARCI), tiene como objetivo principal reducir las barreras arancelarias y simplificar los procedimientos aduaneros entre las naciones participantes. Se espera que esta medida impulse significativamente el comercio intrarregional, que actualmente representa solo una pequeña fracción del total de intercambios comerciales de la región.
 
 Los analistas económicos han señalado que esta alianza podría ser un paso crucial hacia la diversificación de las economías latinoamericanas, tradicionalmente dependientes de la exportación de materias primas.`,
-    imagen: imagenes.america1,
+    videoId: "7Y8LE8CyA2M", // Video de YouTube
     categoria: "América Alerta",
     fecha: "21 de febrero de 2025",
     autor: "Corresponsal Regional"
@@ -73,7 +106,7 @@ Los analistas económicos han señalado que esta alianza podría ser un paso cru
 Las plataformas de comunicación han evolucionado más allá de los simples mensajes de texto y llamadas de voz. Ahora ofrecen traducción en tiempo real, asistentes impulsados por IA, y experiencias de realidad aumentada que permiten a las personas sentirse conectadas a pesar de la distancia física.
 
 Los expertos señalan que estos avances tienen implicaciones profundas para la educación, el trabajo remoto y las relaciones interpersonales.`,
-    imagen: imagenes.viral1,
+    videoId: "WPDeN0bxhkc", // Video de YouTube
     categoria: "Virales",
     fecha: "20 de febrero de 2025",
     autor: "Sección Tecnología"
@@ -210,7 +243,7 @@ Sin embargo, también alertan sobre los riesgos de confiabilidad de la informaci
     sumario: "La comunidad internacional hace un llamado al diálogo tras los últimos acontecimientos en la región.",
     contenido: `La escalada de tensiones en Oriente Medio ha generado profunda preocupación en la comunidad internacional, con múltiples países haciendo llamados al diálogo y la moderación.
 
-El Consejo de Seguridad de las Naciones Unidas ha convocado a una sesión de emergencia para analizar la situación y explorar vías diplomáticas que permitan una desescalada del conflicto.
+El Consejo de Seguridad de las Naciones Unidas ha convocado a una sesión de emergencia para analizar la situación y探索 vías diplomáticas que permitan una desescalada del conflicto.
 
 Organizaciones humanitarias han alertado sobre el impacto en la población civil y la necesidad de garantizar corredores humanitarios.`,
     imagen: imagenes.mundo4,
@@ -249,6 +282,32 @@ Este cambio ha generado un intenso debate sobre la responsabilidad social de est
 ]
 
 const pestañas = ["Mundo", "América Alerta", "Opinión", "Virales"]
+
+// Palabras clave para marcar
+const palabrasParaMarcar = [
+  "cambio climático",
+  "Acuerdo",
+  "alianza",
+  "tecnología",
+  "redes sociales",
+  "economía",
+  "América Latina",
+  "Brasil",
+  "México",
+  "influencers",
+  "TikTok",
+  "desinformación"
+]
+
+// Función para marcar palabras en el texto
+const marcarPalabras = (texto: string) => {
+  let resultado = texto
+  palabrasParaMarcar.forEach(palabra => {
+    const regex = new RegExp(`(${palabra})`, 'gi')
+    resultado = resultado.replace(regex, `|||MARCA|||$1|||FIN|||`)
+  })
+  return resultado
+}
 
 // Tipos de vista
 type VistaTipo = 'home' | 'noticia' | 'seccion'
@@ -322,17 +381,17 @@ function Header({
                 <Search className="w-5 h-5 text-gray-600" />
               </button>
               <div className="hidden sm:flex items-center gap-1">
-                <a href="#" className="p-2 hover:bg-blue-50 rounded-full transition-colors" title="Facebook">
+                <a href={redesSociales.facebook} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-blue-50 rounded-full transition-colors" title="Facebook">
                   <Facebook className="w-5 h-5 text-gray-600 hover:text-blue-600" />
                 </a>
-                <a href="#" className="p-2 hover:bg-gray-100 rounded-full transition-colors" title="X">
+                <a href={redesSociales.x} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-gray-100 rounded-full transition-colors" title="X">
                   <XIcon className="w-5 h-5 text-gray-600 hover:text-gray-900" />
                 </a>
-                <a href="#" className="p-2 hover:bg-red-50 rounded-full transition-colors" title="YouTube">
+                <a href={redesSociales.youtube} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-red-50 rounded-full transition-colors" title="YouTube">
                   <Youtube className="w-5 h-5 text-gray-600 hover:text-red-600" />
                 </a>
-                <a href="#" className="p-2 hover:bg-blue-50 rounded-full transition-colors" title="Telegram">
-                  <Send className="w-5 h-5 text-gray-600 hover:text-blue-500" />
+                <a href={redesSociales.telegram} className="p-2 hover:bg-blue-50 rounded-full transition-colors" title="Telegram (próximamente)">
+                  <Send className="w-5 h-5 text-gray-400" />
                 </a>
               </div>
             </div>
@@ -439,6 +498,7 @@ function Header({
     </header>
   )
 }
+
 export default function Home() {
   const [pestañaActiva, setPestañaActiva] = useState("Mundo")
   const [vistaActual, setVistaActual] = useState<VistaTipo>('home')
@@ -504,6 +564,47 @@ export default function Home() {
     resultadosBusqueda
   }
 
+  // Componente para renderizar imagen o video
+  const renderMedia = (noticia: typeof todasLasNoticias[0], height: string = "h-[400px]") => {
+    if (noticia.videoId) {
+      return (
+        <div className={`relative overflow-hidden rounded-lg aspect-video ${height}`}>
+          <iframe
+            src={`https://www.youtube.com/embed/${noticia.videoId}`}
+            title={noticia.titulo}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </div>
+      )
+    }
+    return (
+      <div className={`relative overflow-hidden rounded-lg ${height}`}>
+        <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-full object-cover" />
+      </div>
+    )
+  }
+
+  // Componente para renderizar contenido con palabras marcadas
+  const renderContenido = (contenido: string) => {
+    const textoMarcado = marcarPalabras(contenido)
+    const partes = textoMarcado.split('|||')
+    
+    return partes.map((parte, index) => {
+      if (parte === 'MARCA|||') {
+        return null
+      }
+      if (parte === 'FIN|||') {
+        return null
+      }
+      if (partes[index - 1] === 'MARCA|||') {
+        return <PalabraMarcada key={index}>{parte}</PalabraMarcada>
+      }
+      return <span key={index}>{parte}</span>
+    })
+  }
+
   // VISTA: NOTICIA INDIVIDUAL
   if (vistaActual === 'noticia' && noticiaSeleccionada) {
     const noticia = obtenerNoticia(noticiaSeleccionada)
@@ -525,12 +626,20 @@ export default function Home() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">{noticia.titulo}</h1>
           <p className="text-sm text-gray-600 mb-6">Por <span className="font-medium">{noticia.autor}</span></p>
-          <div className="relative overflow-hidden rounded-lg mb-6">
-            <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-auto object-cover" />
-          </div>
+          
+          {noticia.videoId ? (
+            <VideoYouTube videoId={noticia.videoId} titulo={noticia.titulo} />
+          ) : (
+            <div className="relative overflow-hidden rounded-lg mb-6">
+              <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-auto object-cover" />
+            </div>
+          )}
+          
           <div className="prose prose-lg max-w-none">
             {noticia.contenido.split('\n\n').map((parrafo, index) => (
-              <p key={index} className="text-gray-700 leading-relaxed mb-4 text-lg">{parrafo}</p>
+              <p key={index} className="text-gray-700 leading-relaxed mb-4 text-lg">
+                {renderContenido(parrafo)}
+              </p>
             ))}
           </div>
         </main>
@@ -543,10 +652,10 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-[#1e3a5f]">NOMBRE</h2>
             </div>
             <div className="flex justify-center gap-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
+              <a href={redesSociales.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href={redesSociales.x} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
+              <a href={redesSociales.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
+              <a href={redesSociales.telegram} className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
             </div>
             <p className="text-xs text-gray-400 mt-4">© 2025 NOMBRE. Todos los derechos reservados.</p>
           </div>
@@ -573,9 +682,21 @@ export default function Home() {
               noticiasSeccion.map((noticia) => (
                 <article key={noticia.id} className="flex gap-6 cursor-pointer group border-b border-gray-100 pb-6" onClick={() => irANoticia(noticia.id)}>
                   <div className="flex-shrink-0 w-48 md:w-64">
-                    <div className="relative overflow-hidden rounded-lg">
-                      <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-500" />
-                    </div>
+                    {noticia.videoId ? (
+                      <div className="relative overflow-hidden rounded-lg aspect-video">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${noticia.videoId}`}
+                          title={noticia.titulo}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative overflow-hidden rounded-lg">
+                        <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -601,10 +722,10 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-[#1e3a5f]">NOMBRE</h2>
             </div>
             <div className="flex justify-center gap-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
+              <a href={redesSociales.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href={redesSociales.x} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
+              <a href={redesSociales.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
+              <a href={redesSociales.telegram} className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
             </div>
             <p className="text-xs text-gray-400 mt-4">© 2025 NOMBRE. Todos los derechos reservados.</p>
           </div>
@@ -630,8 +751,8 @@ export default function Home() {
                   {noticiaPrincipal.titulo}
                 </h2>
               </div>
-              <div className="relative overflow-hidden rounded-lg" onClick={() => irANoticia(noticiaPrincipal.id)}>
-                <img src={noticiaPrincipal.imagen} alt={noticiaPrincipal.titulo} className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div onClick={() => irANoticia(noticiaPrincipal.id)}>
+                {renderMedia(noticiaPrincipal)}
               </div>
               <p onClick={() => irANoticia(noticiaPrincipal.id)} className="mt-4 text-gray-700 text-base md:text-lg leading-relaxed cursor-pointer">
                 {noticiaPrincipal.sumario}
@@ -642,12 +763,26 @@ export default function Home() {
             {noticiasSecundarias.map((noticia) => (
               <article key={noticia.id} className="group cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg" onClick={() => irANoticia(noticia.id)}>
-                  <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute top-3 left-3 cursor-pointer" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
-                    <span className="bg-[#1e3a5f] text-white px-2 py-1 text-xs font-bold uppercase rounded hover:bg-[#2a4a73] transition-colors">
-                      {noticia.categoria}
-                    </span>
-                  </div>
+                  {noticia.videoId ? (
+                    <div className="aspect-video">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${noticia.videoId}`}
+                        title={noticia.titulo}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute top-3 left-3 cursor-pointer" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
+                        <span className="bg-[#1e3a5f] text-white px-2 py-1 text-xs font-bold uppercase rounded hover:bg-[#2a4a73] transition-colors">
+                          {noticia.categoria}
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="mt-3" onClick={() => irANoticia(noticia.id)}>
                   <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#1e3a5f] transition-colors leading-tight">
@@ -753,10 +888,10 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-[#1e3a5f]">NOMBRE</h2>
             </div>
             <div className="flex justify-center gap-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
+              <a href={redesSociales.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href={redesSociales.x} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors"><XIcon className="w-5 h-5" /></a>
+              <a href={redesSociales.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors"><Youtube className="w-5 h-5" /></a>
+              <a href={redesSociales.telegram} className="text-gray-400 hover:text-blue-500 transition-colors"><Send className="w-5 h-5" /></a>
             </div>
             <p className="text-xs text-gray-400 mt-4">© 2025 NOMBRE. Todos los derechos reservados.</p>
           </div>

@@ -30,6 +30,61 @@ const PalabraMarcada = ({ children }: { children: React.ReactNode }) => (
   </a>
 )
 
+
+// Componente de botones para compartir
+const BotonesCompartir = ({ titulo, url }: { titulo: string; url: string }) => {
+  const compartirFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      '_blank',
+      'width=600,height=400'
+    )
+  }
+
+  const compartirX = () => {
+    window.open(
+      `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(titulo)}`,
+      '_blank',
+      'width=600,height=400'
+    )
+  }
+
+  const copiarEnlace = () => {
+    navigator.clipboard.writeText(url)
+    alert('¡Enlace copiado al portapapeles!')
+  }
+
+  return (
+    <div className="flex items-center gap-3 py-4 border-t border-b border-gray-200 my-6">
+      <span className="text-sm font-medium text-gray-600">Compartir:</span>
+      <button 
+        onClick={compartirFacebook}
+        className="flex items-center gap-2 px-4 py-2 bg-[#1877f2] text-white rounded-lg hover:bg-[#166fe5] transition-colors text-sm font-medium"
+      >
+        <Facebook className="w-4 h-4" />
+        Facebook
+      </button>
+      <button 
+        onClick={compartirX}
+        className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+      >
+        <XIcon className="w-4 h-4" />
+        X
+      </button>
+      <button 
+        onClick={copiarEnlace}
+        className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm font-medium"
+        title="Copiar enlace"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+        </svg>
+        Copiar enlace
+      </button>
+    </div>
+  )
+}
+
 // Componente para embeber videos de YouTube
 const VideoYouTube = ({ videoId, titulo }: { videoId: string; titulo: string }) => (
   <div className="relative overflow-hidden rounded-lg mb-6 aspect-video">
@@ -622,6 +677,8 @@ const renderContenido = (contenido: string) => {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">{noticia.titulo}</h1>
           <p className="text-sm text-gray-600 mb-6">Por <span className="font-medium">{noticia.autor}</span></p>
           
+          <BotonesCompartir titulo={noticia.titulo} url={typeof window !== 'undefined' ? window.location.href : ''} />
+
           {noticia.videoId ? (
             <VideoYouTube videoId={noticia.videoId} titulo={noticia.titulo} />
           ) : (

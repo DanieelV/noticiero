@@ -721,21 +721,15 @@ const renderContenido = (contenido: string) => {
               noticiasSeccion.map((noticia) => (
                 <article key={noticia.id} className="flex gap-6 cursor-pointer group border-b border-gray-100 pb-6" onClick={() => irANoticia(noticia.id)}>
                   <div className="flex-shrink-0 w-48 md:w-64">
-                    {noticia.videoId ? (
-                      <div className="relative overflow-hidden rounded-lg aspect-video">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${noticia.videoId}`}
-                          title={noticia.titulo}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full"
-                        />
-                      </div>
-                    ) : (
-                      <div className="relative overflow-hidden rounded-lg">
-                        <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-500" />
-                      </div>
-                    )}
+                                        <div className="relative overflow-hidden rounded-lg aspect-video">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${noticia.videoId}`}
+                        title={noticia.titulo}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
+                    </div>
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -802,26 +796,20 @@ const renderContenido = (contenido: string) => {
             {noticiasSecundarias.map((noticia) => (
               <article key={noticia.id} className="group cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg" onClick={() => irANoticia(noticia.id)}>
-                  {noticia.videoId ? (
-                    <div className="aspect-video">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${noticia.videoId}`}
-                        title={noticia.titulo}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full"
-                      />
-                    </div>
-                  ) : (
-                    <>
-                      <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute top-3 left-3 cursor-pointer" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
-                        <span className="bg-[#1e3a5f] text-white px-2 py-1 text-xs font-bold uppercase rounded hover:bg-[#2a4a73] transition-colors">
-                          {noticia.categoria}
-                        </span>
-                      </div>
-                    </>
-                  )}
+                  <div className="aspect-video relative">
+  <iframe
+    src={`https://www.youtube.com/embed/${noticia.videoId}`}
+    title={noticia.titulo}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="w-full h-full"
+  />
+  <div className="absolute top-3 left-3 cursor-pointer" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
+    <span className="bg-[#1e3a5f] text-white px-2 py-1 text-xs font-bold uppercase rounded hover:bg-[#2a4a73] transition-colors">
+      {noticia.categoria}
+    </span>
+  </div>
+</div>
                 </div>
                 <div className="mt-3" onClick={() => irANoticia(noticia.id)}>
                   <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#1e3a5f] transition-colors leading-tight">
@@ -845,7 +833,7 @@ const renderContenido = (contenido: string) => {
           {noticiasGrid.map((noticia) => (
             <article key={noticia.id} className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-lg" onClick={() => irANoticia(noticia.id)}>
-                <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={`https://img.youtube.com/vi/${noticia.videoId}/hqdefault.jpg`} alt={noticia.titulo} className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
                   <span className="bg-[#1e3a5f]/90 text-white px-2 py-1 text-xs font-bold uppercase rounded cursor-pointer hover:bg-[#2a4a73] transition-colors">
                     {noticia.categoria}
@@ -888,7 +876,7 @@ const renderContenido = (contenido: string) => {
               {noticiasExtra.map((noticia) => (
                 <article key={noticia.id} className="group cursor-pointer">
                   <div className="relative overflow-hidden rounded-lg" onClick={() => irANoticia(noticia.id)}>
-                    <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={`https://img.youtube.com/vi/${noticia.videoId}/hqdefault.jpg`} alt={noticia.titulo} className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute top-3 left-3" onClick={(e) => { e.stopPropagation(); irASeccion(noticia.categoria) }}>
                       <span className="bg-[#1e3a5f]/90 text-white px-2 py-1 text-xs font-bold uppercase rounded cursor-pointer hover:bg-[#2a4a73] transition-colors">
                         {noticia.categoria}

@@ -630,22 +630,15 @@ export default function Home() {
 
   // Componente para renderizar imagen o video
   const renderMedia = (noticia: typeof todasLasNoticias[0], height: string = "h-[400px]") => {
-    if (noticia.videoId) {
-      return (
-        <div className={`relative overflow-hidden rounded-lg aspect-video ${height}`}>
-          <iframe
-            src={`https://www.youtube.com/embed/${noticia.videoId}`}
-            title={noticia.titulo}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          />
-        </div>
-      )
-    }
     return (
-      <div className={`relative overflow-hidden rounded-lg ${height}`}>
-        <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-full object-cover" />
+      <div className={`relative overflow-hidden rounded-lg aspect-video ${height}`}>
+        <iframe
+          src={`https://www.youtube.com/embed/${noticia.videoId}`}
+          title={noticia.titulo}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
+        />
       </div>
     )
   }

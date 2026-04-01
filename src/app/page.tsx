@@ -672,13 +672,7 @@ const renderContenido = (contenido: string) => {
           
           <BotonesCompartir titulo={noticia.titulo} url={typeof window !== 'undefined' ? window.location.href : ''} />
 
-          {noticia.videoId ? (
-            <VideoYouTube videoId={noticia.videoId} titulo={noticia.titulo} />
-          ) : (
-            <div className="relative overflow-hidden rounded-lg mb-6">
-              <img src={noticia.imagen} alt={noticia.titulo} className="w-full h-auto object-cover" />
-            </div>
-          )}
+                    <VideoYouTube videoId={noticia.videoId} titulo={noticia.titulo} />
           
           <div className="prose prose-lg max-w-none">
             {noticia.contenido.split('\n\n').map((parrafo, index) => (

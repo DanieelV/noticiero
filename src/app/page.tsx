@@ -175,7 +175,7 @@ Los expertos señalan que estos avances tienen implicaciones profundas para la e
 Los políticos de todo el espectro ideológico ahora dependen de estas plataformas para comunicarse directamente con sus constituyentes, eludiendo los filtros tradicionales de los medios de comunicación. Esta democratización del discurso político tiene tanto aspectos positivos como negativos, según los analistas.
 
 El desafío para las sociedades democráticas es encontrar el equilibrio entre la libertad de expresión y la necesidad de información veraz y constructiva.`,
-    videoId: "-HkhuyfJROI",
+    videoId: "eYFEGp_V5mU",
     categoria: "Opinión",
     fecha: "19 de febrero de 2025",
     autor: "Editorial"
@@ -189,7 +189,7 @@ El desafío para las sociedades democráticas es encontrar el equilibrio entre l
 La inversión extranjera directa ha aumentado significativamente, atraída por las reformas estructurales implementadas en varios países y por el creciente mercado de consumidores de clase media. Sectores como la tecnología, las energías renovables y el comercio electrónico están liderando esta nueva ola de desarrollo económico.
 
 Los economistas señalan que esta tendencia representa una oportunidad histórica para la región.`,
-    videoId: "f6O23OavO6Y",
+    videoId: "ryJZX_rcFaQ",
     categoria: "América Alerta",
     fecha: "18 de febrero de 2025",
     autor: "Sección Economía"
@@ -203,7 +203,7 @@ Los economistas señalan que esta tendencia representa una oportunidad históric
 Los resultados muestran una creciente preocupación por temas como el cambio climático, la desigualdad económica y la inestabilidad geopolítica. Sin embargo, también revelan un optimismo cauteloso sobre el futuro, particularmente entre las generaciones más jóvenes.
 
 Estos hallazgos tienen importantes implicaciones para formuladores de políticas y líderes políticos.`,
-    videoId: "I9Ja7y7Xpkw",
+    videoId: "qjo2RurchIY",
     categoria: "Opinión",
     fecha: "17 de febrero de 2025",
     autor: "Análisis Político"
@@ -217,7 +217,7 @@ Estos hallazgos tienen importantes implicaciones para formuladores de políticas
 Lo que hace que un contenido se vuelva viral sigue siendo un misterio parcial para los expertos en marketing digital. Sin embargo, ciertos elementos aparecen de forma recurrente: la emoción auténtica, la relevancia cultural y el momento oportuno parecen ser factores clave.
 
 El impacto de estos fenómenos va más allá del entretenimiento.`,
-    videoId: "4Gu-rSb_2GQ",
+    videoId: "3WGboeOPk0c",
     categoria: "Virales",
     fecha: "16 de febrero de 2025",
     autor: "Tendencias Digitales"
@@ -231,7 +231,7 @@ El impacto de estos fenómenos va más allá del entretenimiento.`,
 Un grupo de reconocidos expertos en relaciones internacionales se reunió recientemente para analizar estos escenarios. Sus conclusiones, aunque diversas, coinciden en que nos encontramos en un punto de inflexión histórica.
 
 Algunos prevén un mundo multipolar, donde varias potencias compartan la influencia global.`,
-    videoId: "pN6HVywYltk",
+    videoId: "_RVkWPqchmY",
     categoria: "Mundo",
     fecha: "15 de febrero de 2025",
     autor: "Análisis Internacional"
@@ -245,7 +245,7 @@ Algunos prevén un mundo multipolar, donde varias potencias compartan la influen
 Uno de los casos más destacados es el de una pequeña ciudad en Europa que ha logrado convertirse en carbono negativo, generando más energía limpia de la que consume.
 
 Estos ejemplos ofrecen lecciones valiosas sobre cómo podemos abordar los desafíos ambientales actuales.`,
-    videoId: "DD9kRBXdqTU",
+    videoId: "nMbSlqoY_iE",
     categoria: "Mundo",
     fecha: "14 de febrero de 2025",
     autor: "Sección Medio Ambiente"
@@ -259,7 +259,7 @@ Estos ejemplos ofrecen lecciones valiosas sobre cómo podemos abordar los desaf�
 La iniciativa busca que México genere el 50% de su electricidad a partir de fuentes limpias para 2030, incluyendo parques eólicos, plantas solares y proyectos de energía geotérmica.
 
 Esta reforma representa un cambio significativo en la política energética del país y podría posicionarlo como líder regional en la transición hacia energías sustentables.`,
-    videoId: "TnGlLsptq9A",
+    videoId: "wC21GMm3eSE",
     categoria: "América Alerta",
     fecha: "13 de febrero de 2025",
     autor: "Corresponsal México"
@@ -273,7 +273,7 @@ Esta reforma representa un cambio significativo en la política energética del 
 Periodistas de reconocidos medios internacionales participaron en un foro sobre el futuro del periodismo, donde discutieron estrategias para combatir la desinformación mientras mantienen los estándares de calidad y objetividad.
 
 El consenso general apunta a la necesidad de mayor transparencia en las fuentes y una mayor inversión en verificación de datos.`,
-    videoId: "UjrwbvxJh5w",
+    videoId: "S0w6aVHk46U",
     categoria: "Opinión",
     fecha: "12 de febrero de 2025",
     autor: "Foro de Periodismo"
@@ -287,7 +287,7 @@ El consenso general apunta a la necesidad de mayor transparencia en las fuentes 
 Los expertos señalan que el formato de video corto y el algoritmo de recomendación personalizado han creado una nueva forma de consumir contenido informativo, más visual y directa.
 
 Sin embargo, también alertan sobre los riesgos de confiabilidad de la información que circula en la plataforma.`,
-    videoId: "MgGQVr2cZSM",
+    videoId: "n2IwGObNCY0",
     categoria: "Virales",
     fecha: "11 de febrero de 2025",
     autor: "Tecnología Digital"
@@ -301,7 +301,7 @@ Sin embargo, también alertan sobre los riesgos de confiabilidad de la informaci
 El Consejo de Seguridad de las Naciones Unidas ha convocado a una sesión de emergencia para analizar la situación y探索 vías diplomáticas que permitan una desescalada del conflicto.
 
 Organizaciones humanitarias han alertado sobre el impacto en la población civil y la necesidad de garantizar corredores humanitarios.`,
-    videoId: "TzB_LKrBR3o",
+    videoId: "0RUNAIRllf8",
     categoria: "Mundo",
     fecha: "10 de febrero de 2025",
     autor: "Corresponsal Internacional"
@@ -315,7 +315,7 @@ Organizaciones humanitarias han alertado sobre el impacto en la población civil
 Las nuevas medidas incluyen el uso de tecnología satelital para monitoreo en tiempo real y la creación de un cuerpo especializado de agentes ambientales.
 
 Organizaciones ambientalistas han celebrado el anuncio, aunque señalan que la implementación efectiva será clave para el éxito de estas políticas.`,
-    videoId: "8Adp_F7DR1A",
+    videoId: "RITeuci10Dk",
     categoria: "América Alerta",
     fecha: "9 de febrero de 2025",
     autor: "Corresponsal Brasil"
@@ -329,7 +329,7 @@ Organizaciones ambientalistas han celebrado el anuncio, aunque señalan que la i
 Estudios recientes muestran que un alto porcentaje de usuarios de redes sociales confía más en las recomendaciones de influencers que en la información de medios tradicionales.
 
 Este cambio ha generado un intenso debate sobre la responsabilidad social de estos nuevos actores mediáticos y la necesidad de regular la publicidad encubierta.`,
-    videoId: "ZU3S3tlCOvY",
+    videoId: "kipXalgucCE",
     categoria: "Virales",
     fecha: "8 de febrero de 2025",
     autor: "Análisis Digital"
